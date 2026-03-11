@@ -15,8 +15,19 @@ CREATE TABLE IF NOT EXISTS event_types (
 -- Represents the availability of the user for scheduling meetings
 CREATE TABLE availability (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    day_of_week VARCHAR(20) NOT NULL,
+    day_of_week ENUM(
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday'
+    ) NOT NULL,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
+    timezone VARCHAR(100) DEFAULT 'Asia/Kolkata',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
