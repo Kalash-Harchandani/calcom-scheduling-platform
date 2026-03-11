@@ -6,138 +6,93 @@ import {
   deleteEvent,
 } from "../models/evetModel.js";
 
-// POST /api/event-types
+// POST /events
 export async function createEventHandler(req, res) {
-  try {
-    const { title, description, slug, duration } = req.body;
+  const { title, description, slug, duration } = req.body;
 
-    if (!title || !slug || !duration) {
-      return res.status(400).json({
-        success: false,
-        message: "title, slug and duration are required",
-      });
-    }
-
-    const id = await createEvent({ title, description, slug, duration });
-
-    return res.status(201).json({
-      success: true,
-      data: { id, title, description, slug, duration },
-    });
-  } catch (error) {
-    console.error("createEventHandler error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to create event type",
-    });
+  if (!title || !slug || !duration) {
+    const error = new Error("title, slug and duration are required");
+    error.status = 400;
+    throw error;
   }
+
+  const id = await createEvent({ title, description, slug, duration });
+
+  return res.status(201).json({
+    success: true,
+    data: { id, title, description, slug, duration },
+  });
 }
 
-// GET /api/event-types
+// GET /events
 export async function getAllEventsHandler(_req, res) {
-  try {
-    const events = await getAllEvents();
-    return res.status(200).json({
-      success: true,
-      data: events,
-    });
-  } catch (error) {
-    console.error("getAllEventsHandler error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to fetch event types",
-    });
-  }
+  const events = await getAllEvents();
+  return res.status(200).json({
+    success: true,
+    data: events,
+  });
 }
 
-// GET /api/event-types/:slug
+// GET /events/slug/:slug
 export async function getEventBySlugHandler(req, res) {
-  try {
-    const { slug } = req.params;
-    const event = await getEventBySlug(slug);
+  const { slug } = req.params;
+  const event = await getEventBySlug(slug);
 
-    if (!event) {
-      return res.status(404).json({
-        success: false,
-        message: "Event type not found",
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      data: event,
-    });
-  } catch (error) {
-    console.error("getEventBySlugHandler error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to fetch event type",
-    });
+  if (!event) {
+    const error = new Error("Event type not found");
+    error.status = 404;
+    throw error;
   }
+
+  return res.status(200).json({
+    success: true,
+    data: event,
+  });
 }
 
-// PUT /api/event-types/:id
+// PUT /events/:id
 export async function updateEventHandler(req, res) {
-  try {
-    const { id } = req.params;
-    const { title, description, slug, duration } = req.body;
+  const { id } = req.params;
+  const { title, description, slug, duration } = req.body;
 
-    if (!title || !slug || !duration) {
-      return res.status(400).json({
-        success: false,
-        message: "title, slug and duration are required",
-      });
-    }
-
-    const updated = await updateEvent(id, {
-      title,
-      description,
-      slug,
-      duration,
-    });
-
-    if (!updated) {
-      return res.status(404).json({
-        success: false,
-        message: "Event type not found",
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      data: { id, title, description, slug, duration },
-    });
-  } catch (error) {
-    console.error("updateEventHandler error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to update event type",
-    });
+  if (!title || !slug || !duration) {
+    const error = new Error("title, slug and duration are required");
+    error.status = 400;
+    throw error;
   }
+
+  const updated = await updateEvent(id, {
+    title,
+    description,
+    slug,
+    duration,
+  });
+
+  if (!updated) {
+    const error = new Error("Event type not found");
+    error.status = 404;
+    throw error;
+  }
+
+  return res.status(200).json({
+    success: true,
+    data: { id, title, description, slug, duration },
+  });
 }
 
-// DELETE /api/event-types/:id
+// DELETE /events/:id
 export async function deleteEventHandler(req, res) {
-  try {
-    const { id } = req.params;
-    const deleted = await deleteEvent(id);
+  const { id } = req.params;
+  const deleted = await deleteEvent(id);
 
-    if (!deleted) {
-      return res.status(404).json({
-        success: false,
-        message: "Event type not found",
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      message: "Event type deleted successfully",
-    });
-  } catch (error) {
-    console.error("deleteEventHandler error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to delete event type",
-    });
+  if (!deleted) {
+    const error = new Error("Event type not found");
+    error.status = 404;
+    throw error;
   }
+
+  return res.status(200).json({
+    success: true,
+    message: "Event type deleted successfully",
+  });
 }
