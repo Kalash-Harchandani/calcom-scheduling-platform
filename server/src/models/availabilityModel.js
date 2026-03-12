@@ -23,6 +23,19 @@ export async function getAllAvailability() {
   return rows;
 }
 
+// Get availability slots for a specific day of week
+export async function getAvailabilityByDay(day_of_week) {
+  const query = `
+    SELECT id, day_of_week, start_time, end_time, created_at
+    FROM availability
+    WHERE day_of_week = ?
+    ORDER BY start_time ASC
+  `;
+
+  const [rows] = await pool.query(query, [day_of_week]);
+  return rows;
+}
+
 // Update an availability slot by id
 export async function updateAvailability(
   id,
@@ -54,3 +67,4 @@ export async function deleteAvailability(id) {
   const [result] = await pool.query(query, [id]);
   return result.affectedRows > 0;
 }
+

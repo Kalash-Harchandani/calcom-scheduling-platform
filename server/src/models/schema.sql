@@ -29,5 +29,20 @@ CREATE TABLE availability (
     timezone VARCHAR(100) DEFAULT 'Asia/Kolkata',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+-- BOOKINGS
+-- Represents the bookings made by the users
+CREATE TABLE bookings (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         event_type_id INT NOT NULL,
+         name VARCHAR(255) NOT NULL,
+         email VARCHAR(255) NOT NULL,
+         booking_date DATE NOT NULL,
+         start_time TIME NOT NULL,
+         end_time TIME NOT NULL,
+         status ENUM('scheduled','cancelled') DEFAULT 'scheduled',
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+     
+         FOREIGN KEY (event_type_id) REFERENCES event_types(id)
+);
 
 
