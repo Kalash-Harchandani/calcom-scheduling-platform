@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
+import { ArrowLeft } from "lucide-react";
 
 const BookEvent = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [event, setEvent] = useState(null);
   const [date, setDate] = useState(dayjs());
   const [slots, setSlots] = useState([]);
@@ -108,7 +110,7 @@ const BookEvent = () => {
 
   if (loadingEvent) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#050509] text-white">
+      <div className="flex min-h-screen items-center justify-center bg-black text-white">
         <p className="text-sm text-[#a1a1aa]">Loading event…</p>
       </div>
     );
@@ -116,7 +118,7 @@ const BookEvent = () => {
 
   if (!event) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#050509] text-white">
+      <div className="flex min-h-screen items-center justify-center bg-black text-white">
         <p className="text-sm text-[#a1a1aa]">Event not found.</p>
       </div>
     );
@@ -128,8 +130,20 @@ const BookEvent = () => {
     const dateFormatted = bookedDetails.date.format("dddd, MMMM D, YYYY");
 
     return (
-      <div className="min-h-screen bg-[#050509] px-4 py-10 text-white md:px-0 flex items-center justify-center">
-        <div className="mx-auto w-full max-w-2xl min-h-[500px] rounded-[28px] border border-white/10 bg-[#050509] px-8 py-16 shadow-[0_32px_110px_rgba(0,0,0,1)] text-[#e4e4e7]">
+      <div className="min-h-screen bg-black px-4 py-10 text-white md:px-0 flex items-center justify-center relative">
+        <button
+          onClick={() => {
+            setSuccessMessage("");
+            setBookedDetails(null);
+            setBookingState({ name: "", email: "" });
+            setSelectedSlot(null);
+          }}
+          className="absolute top-8 left-8 flex items-center gap-2 text-sm text-[#a1a1aa] hover:text-white transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to booking
+        </button>
+        <div className="mx-auto w-full max-w-2xl min-h-[500px] rounded-[28px] border border-white/10 bg-[#111111] px-8 py-16 shadow-[0_32px_110px_rgba(0,0,0,1)] text-[#e4e4e7]">
           <div className="flex flex-col items-center text-center">
             <div className="mb-6 flex h-[48px] w-[48px] items-center justify-center rounded-full bg-[#1b2b24] text-[#4ade80]">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -179,14 +193,21 @@ const BookEvent = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#050509] px-4 py-10 text-white md:px-0 flex items-center justify-center">
-      <div className="mx-auto w-full max-w-5xl min-h-[540px] rounded-[28px] border border-white/10 bg-[#050509] px-10 py-16 shadow-[0_32px_110px_rgba(0,0,0,1)] md:px-14 md:py-20">
+    <div className="min-h-screen bg-black px-4 py-10 text-white md:px-0 flex items-center justify-center relative">
+      <button
+        onClick={() => navigate("/app/dashboard")}
+        className="absolute top-8 left-8 flex items-center gap-2 text-sm text-[#a1a1aa] hover:text-white transition-colors"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Back to dashboard
+      </button>
+      <div className="mx-auto w-full max-w-5xl min-h-[540px] rounded-[28px] border border-white/10 bg-[#111111] px-10 py-16 shadow-[0_32px_110px_rgba(0,0,0,1)] md:px-14 md:py-20">
         <div className="grid gap-12 md:grid-cols-[280px_minmax(0,1.1fr)_minmax(0,1.1fr)]">
           {/* Left: event summary */}
           <aside className="space-y-5 border-b border-white/10 pb-8 text-sm text-[#e4e4e7] md:border-b-0 md:border-r md:pb-0 md:pr-8">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-sm font-semibold text-black">
-                {event.title.charAt(0).toUpperCase()}
+                A
               </div>
               <div>
                 <p className="text-sm text-[#a1a1aa]">Admin</p>
@@ -242,7 +263,7 @@ const BookEvent = () => {
               </button>
             </div>
 
-            <div className="grid grid-cols-7 gap-1 text-[11px] text-[#6e6e73]">
+            <div className="grid grid-cols-7 gap-1 text-[12px] font-medium text-[#6e6e73] mb-2">
               {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((d) => (
                 <div key={d} className="text-center">
                   {d}
@@ -250,7 +271,7 @@ const BookEvent = () => {
               ))}
             </div>
 
-            <div className="grid grid-cols-7 gap-1 text-[12px]">
+            <div className="grid grid-cols-7 gap-1 text-sm">
               {Array.from({ length: startWeekday }).map((_, idx) => (
                 <div key={`empty-${idx}`} />
               ))}
@@ -268,7 +289,7 @@ const BookEvent = () => {
                       setDate(cellDate);
                     }}
                     disabled={isPast}
-                    className={`flex h-9 items-center justify-center rounded-md border text-center text-[12px] transition ${
+                    className={`flex h-11 items-center justify-center rounded-md border text-center text-[14px] font-medium transition ${
                       isSelected
                         ? "border-transparent bg-white text-black shadow-sm"
                         : isPast
@@ -308,7 +329,7 @@ const BookEvent = () => {
                         key={`${slot.start_time}-${slot.end_time}`}
                         type="button"
                         onClick={() => setSelectedSlot(slot)}
-                        className={`flex items-center justify-between rounded-full px-4 py-2 text-xs font-medium transition ${
+                        className={`flex items-center justify-between rounded-full px-5 py-3 text-[13px] font-medium transition ${
                           isSelected
                             ? "bg-white text-black"
                             : "bg-white/5 text-[#e4e4e7] hover:bg-white/10"
