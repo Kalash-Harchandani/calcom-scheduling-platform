@@ -28,3 +28,24 @@
   }
 }
 
+.trusted-marquee {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  animation: trusted-scroll 5s linear infinite;
+}
+
+.trusted-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes trusted-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+

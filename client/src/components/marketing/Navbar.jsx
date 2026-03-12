@@ -23,9 +23,13 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-[#f5f5f7]">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-transparent" : "bg-[#f5f5f7]"
+      }`}
+    >
       <nav
-        className={`mx-auto flex max-w-5xl items-center justify-between px-4 py-3 transition-all duration-300 md:px-6 md:py-4 ${
+        className={`mx-auto flex max-w-5xl items-center justify-between px-4 py-3 md:px-6 md:py-4 ${
           isScrolled
             ? "mt-2 rounded-full border border-black/5 bg-white/95 shadow-[0_12px_40px_rgba(0,0,0,0.08)] backdrop-blur"
             : "mt-0"

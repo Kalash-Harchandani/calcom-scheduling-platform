@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../marketing/Navbar";
 import Hero from "../marketing/Hero";
+import TrustedBy from "../marketing/TrustedBy";
 import Features from "../marketing/Features";
 import Testimonials from "../marketing/Testimonials";
 import Footer from "../marketing/Footer";
@@ -12,6 +13,7 @@ const MarketingLayout = () => {
 
       <main className="pt-20 md:pt-24">
         <Hero />
+        <TrustedBy />
         <Features />
         <Testimonials />
       </main>

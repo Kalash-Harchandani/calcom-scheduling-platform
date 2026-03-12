@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const DURATIONS = ["15m", "30m", "45m", "1h"];
-const REVIEW_SOURCES = ["Trustpilot", "G2", "Google Reviews"];
+const REVIEW_SOURCES = ["Trustpilot", "Google Reviews"];
 const HIGHLIGHTED_DATES = [15, 16, 20, 21, 22, 23, 27, 28, 29, 30];
 
 const Hero = () => {
@@ -12,15 +12,15 @@ const Hero = () => {
   useEffect(() => {
     const durationTimer = setInterval(() => {
       setDurationIndex((prev) => (prev + 1) % DURATIONS.length);
-    }, 4400);
+    }, 3740);
 
     const dateTimer = setInterval(() => {
       setDateIndex((prev) => (prev + 1) % HIGHLIGHTED_DATES.length);
-    }, 3600);
+    }, 3060);
 
     const reviewTimer = setInterval(() => {
       setReviewIndex((prev) => (prev + 1) % REVIEW_SOURCES.length);
-    }, 5200);
+    }, 4420);
 
     return () => {
       clearInterval(durationTimer);
@@ -161,10 +161,6 @@ const Hero = () => {
 
                     {/* Static meta info with animated summary line */}
                     <div className="space-y-2 text-xs text-[#3c3c43]">
-                      <div className="flex items-center gap-2">
-                        <span className="h-4 w-4 rounded-full border border-black/20" />
-                        <span>Cal Video</span>
-                      </div>
                       <div className="flex items-center gap-2">
                         <span className="h-4 w-4 rounded-full border border-black/20" />
                         <span>Asia/Kolkata · IST</span>
