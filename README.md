@@ -1,5 +1,9 @@
 
-# 🗓️ Cal.com Clone: Scheduling & Booking Platform
+<p align="center">
+  <img src="./demo.gif" width="800"/>
+</p>
+
+# Cal.com Clone: Scheduling & Booking Platform
 
 <p>
   <img src="https://skillicons.dev/icons?i=react,nodejs,express,mysql,tailwind,docker,vercel,aws,cursor,chatgpt"/>
