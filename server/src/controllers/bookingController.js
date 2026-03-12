@@ -3,6 +3,7 @@ import {
   getUpcomingBookings,
   getPastBookings,
   cancelBooking,
+  getBookingsForDate
 } from "../models/bookingModel.js";
 import { sendBookingEmail } from "../utils/sendEmail.js";
 
@@ -29,6 +30,17 @@ export async function createBookingHandler(req, res) {
       "event_type_id, name, email, booking_date, start_time and end_time are required"
     );
     error.status = 400;
+    throw error;
+  }
+
+  const existingBookings = await getBookingsForDate(booking_date);
+  const isConflict = existingBookings.some(
+    b => b.start_time === start_time && b.status === 'scheduled'
+  );
+
+  if (isConflict) {
+    const error = new Error("This time slot is already booked.");
+    error.status = 409;
     throw error;
   }
 

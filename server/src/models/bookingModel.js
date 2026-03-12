@@ -91,8 +91,8 @@ export async function cancelBooking(id) {
   return result.affectedRows > 0;
 }
 
-// Get bookings for a specific event type and date
-export async function getBookingsForDate(event_type_id, booking_date) {
+// Get ALL bookings for a specific date (across all event types)
+export async function getBookingsForDate(booking_date) {
   const query = `
     SELECT
       id,
@@ -105,11 +105,10 @@ export async function getBookingsForDate(event_type_id, booking_date) {
       status,
       created_at
     FROM bookings
-    WHERE event_type_id = ?
-      AND booking_date = ?
+    WHERE booking_date = ?
     ORDER BY start_time ASC
   `;
 
-  const [rows] = await pool.query(query, [event_type_id, booking_date]);
+  const [rows] = await pool.query(query, [booking_date]);
   return rows;
 }

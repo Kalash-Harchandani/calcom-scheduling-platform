@@ -40,7 +40,7 @@ export async function getAvailableSlotsHandler(req, res) {
   const day_of_week = dayNames[dateObj.getUTCDay()];
 
   const availabilityRanges = await getAvailabilityByDay(day_of_week);
-  const bookings = await getBookingsForDate(event.id, date);
+  const bookings = await getBookingsForDate(date);
 
   const slots = generateSlots(availabilityRanges, event.duration, bookings);
 

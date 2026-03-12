@@ -22,6 +22,7 @@ const Availability = () => {
   // Per-day state: { [day]: { id?, enabled, from, to } }
   const [availability, setAvailability] = useState({});
   const [saving, setSaving] = useState(false);
+  const [savedSuccess, setSavedSuccess] = useState(false);
   const [view, setView] = useState("list"); // "list" | "editor"
 
   useEffect(() => {
@@ -83,6 +84,7 @@ const Availability = () => {
 
   const handleSave = async () => {
     setSaving(true);
+    setSavedSuccess(false);
     try {
       const requests = [];
 
@@ -127,6 +129,8 @@ const Availability = () => {
       if (requests.length > 0) {
         await Promise.all(requests);
       }
+      setSavedSuccess(true);
+      setTimeout(() => setSavedSuccess(false), 3000);
     } catch (err) {
       // ignore for now
     } finally {
@@ -184,10 +188,14 @@ const Availability = () => {
         </div>
         <button
           onClick={handleSave}
-          disabled={saving}
-          className="rounded-full bg-white px-4 py-2 text-xs font-medium text-black shadow-sm disabled:cursor-not-allowed disabled:bg-white/40"
+          disabled={saving || savedSuccess}
+          className={`rounded-full px-4 py-2 text-xs font-medium shadow-sm transition-colors ${
+            savedSuccess
+              ? "bg-emerald-500 text-white disabled:opacity-100 disabled:cursor-default" 
+              : "bg-white text-black disabled:bg-white/40 disabled:cursor-not-allowed"
+          }`}
         >
-          {saving ? "Saving…" : "Save changes"}
+          {saving ? "Saving…" : savedSuccess ? "✓ Saved" : "Save changes"}
         </button>
       </div>
 

@@ -98,19 +98,20 @@ const Bookings = () => {
           <div className="flex flex-col gap-0 rounded-xl border border-white/10 bg-[#111111]">
             {items.map((booking) => {
               // Parse date and time to format them beautifully
-              const dateObj = booking.date ? dayjs(booking.date) : dayjs();
+              const dateObj = booking.booking_date ? dayjs(booking.booking_date) : (booking.date ? dayjs(booking.date) : dayjs());
               const formattedDate = dateObj.format("ddd, D MMM");
               
               const guestName = booking.name || booking.guestName || "Guest";
               const title = booking.eventTitle || booking.eventName || "Quick Chat";
               const duration = parseInt(booking.duration || 30, 10);
-              const startTime = booking.time || "10:00am";
+              const startTime = booking.start_time || booking.time || "10:00am";
               
               // Calculate end time roughly if possible
               let endTimeOutput = "";
               try {
                 // If it's a known format like "10:00 AM", we can parse and add duration
-                const parsedStart = dayjs(`${booking.date || dayjs().format('YYYY-MM-DD')} ${startTime}`);
+                const dateStr = booking.booking_date || booking.date || dayjs().format('YYYY-MM-DD');
+                const parsedStart = dayjs(`${dateStr} ${startTime}`);
                 if (parsedStart.isValid()) {
                   endTimeOutput = " - " + parsedStart.add(duration, 'minute').format("h:mma").toLowerCase();
                 }
