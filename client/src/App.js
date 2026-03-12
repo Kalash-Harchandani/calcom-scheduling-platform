@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
+import MarketingLayout from "./components/layout/MarketingLayout";
 
 const App = () => {
-  return (
-    <div>
-      <h1>Cal Scheduler</h1>
-    </div>
-  )
-}
+  return <MarketingLayout />;
+};
 
-export default App
+export default App;
+
