@@ -26,27 +26,7 @@ A high-performance, full-stack scheduling platform inspired by Cal.com. This app
 ### 🚀 Bonus Features Implemented
 - **Email Notifications**: Automated confirmation/cancellation emails via SMTP (Nodemailer).
 
----
-
-## 🏗️ Technical Architecture
-
-
-### System Flow
-
-```mermaid
-graph TD
-    User((User)) -->|Interacts| Client[React Frontend - Vercel]
-    Client -->|API Requests| API[Node.js / Express Backend]
-
-    subgraph AWS_Cloud_EC2
-        API
-        DB[(MySQL Database - Docker)]
-    end
-
-    API -->|Queries| DB
-    API -->|Sends Emails| SMTP[Nodemailer - SMTP Service]
-```
-
+----
 
 ### Tech Stack
 - **Frontend**: React.js, Tailwind CSS, Lucide Icons, Axios.
