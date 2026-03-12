@@ -102,7 +102,7 @@ const Bookings = () => {
               const formattedDate = dateObj.format("ddd, D MMM");
               
               const guestName = booking.name || booking.guestName || "Guest";
-              const title = booking.eventTitle || booking.eventName || "Quick Chat";
+              const title = booking.eventTitle;
               const duration = parseInt(booking.duration || 30, 10);
               const startTime = booking.start_time || booking.time || "10:00am";
               
