@@ -164,7 +164,7 @@ const DashboardHome = () => {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-white">
-                          {booking.eventTitle || booking.eventName || "Meeting"} with {booking.name || booking.guestName || "Guest"}
+                          {booking.eventTitle || "Meeting"} with Admin and {booking.name || booking.guestName || "Guest"}
                         </p>
                         <div className="flex items-center gap-2 mt-1">
                           {isToday && <span className="rounded-sm bg-emerald-500/20 px-1.5 py-0.5 text-[9px] font-bold text-emerald-400 uppercase tracking-wider">Today</span>}

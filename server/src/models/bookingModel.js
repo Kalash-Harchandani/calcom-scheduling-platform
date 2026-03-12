@@ -38,19 +38,21 @@ export async function createBooking({
 export async function getUpcomingBookings() {
   const query = `
     SELECT
-      id,
-      event_type_id,
-      name,
-      email,
-      booking_date,
-      start_time,
-      end_time,
-      status,
-      created_at
-    FROM bookings
-    WHERE booking_date >= CURDATE()
-      AND status = 'scheduled'
-    ORDER BY booking_date ASC, start_time ASC
+      b.id,
+      b.event_type_id,
+      b.name,
+      b.email,
+      b.booking_date,
+      b.start_time,
+      b.end_time,
+      b.status,
+      b.created_at,
+      et.title AS eventTitle
+    FROM bookings b
+    LEFT JOIN event_types et ON b.event_type_id = et.id
+    WHERE b.booking_date >= CURDATE()
+      AND b.status = 'scheduled'
+    ORDER BY b.booking_date ASC, b.start_time ASC
   `;
 
   const [rows] = await pool.query(query);
@@ -61,18 +63,20 @@ export async function getUpcomingBookings() {
 export async function getPastBookings() {
   const query = `
     SELECT
-      id,
-      event_type_id,
-      name,
-      email,
-      booking_date,
-      start_time,
-      end_time,
-      status,
-      created_at
-    FROM bookings
-    WHERE booking_date < CURDATE()
-    ORDER BY booking_date DESC, start_time DESC
+      b.id,
+      b.event_type_id,
+      b.name,
+      b.email,
+      b.booking_date,
+      b.start_time,
+      b.end_time,
+      b.status,
+      b.created_at,
+      et.title AS eventTitle
+    FROM bookings b
+    LEFT JOIN event_types et ON b.event_type_id = et.id
+    WHERE b.booking_date < CURDATE()
+    ORDER BY b.booking_date DESC, b.start_time DESC
   `;
 
   const [rows] = await pool.query(query);

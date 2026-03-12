@@ -133,7 +133,7 @@ const Bookings = () => {
 
                     {/* Middle: Event Info */}
                     <div className="flex flex-col text-sm">
-                      <span className="font-semibold text-white">{title} between Admin and {guestName.toLowerCase()}</span>
+                      <span className="font-semibold text-white">{title} with Admin and {guestName}</span>
                       <span className="text-[#a1a1aa] mt-0.5">You and {guestName.toLowerCase()}</span>
                     </div>
                   </div>
