@@ -7,7 +7,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 // Point all axios calls to the backend API
-axios.defaults.baseURL = "http://localhost:5005";
+// Point all axios calls to the backend API
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
