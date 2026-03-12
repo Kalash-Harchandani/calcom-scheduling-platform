@@ -38,9 +38,15 @@ const Navbar = () => {
         }`}
       >
         <div className="flex items-center">
-          <span className="text-2xl font-semibold tracking-tight text-[#111111]">
+          <button 
+            onClick={() => {
+              navigate("/");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }} 
+            className="text-2xl font-semibold tracking-tight text-[#111111]"
+          >
             Cal.com
-          </span>
+          </button>
         </div>
 
         <div className="hidden items-center space-x-10 text-base text-[#6e6e73] md:flex">

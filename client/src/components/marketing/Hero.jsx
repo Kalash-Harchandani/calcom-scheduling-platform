@@ -37,9 +37,35 @@ const Hero = () => {
   const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   return (
-    <section className="border-b border-black/5 bg-[#f5f5f7]">
-      <div className="mx-auto max-w-6xl px-4 pb-28 pt-4 md:px-6 md:pb-32 md:pt-8">
-        <div className="rounded-[12px] border border-black/5 bg-white p-12 shadow-[0_18px_60px_rgba(0,0,0,0.08)] md:p-14 lg:p-16">
+    <section className="relative overflow-hidden border-b border-black/5 bg-[#f5f5f7]">
+      <div className="relative mx-auto max-w-7xl px-4 pb-28 pt-4 md:px-12 lg:px-20 md:pb-32 md:pt-8">
+        
+        {/* Infinite Background Grid Lines */}
+        <div className="absolute left-4 right-4 top-4 bottom-28 md:left-12 md:right-12 lg:left-20 lg:right-20 md:top-8 md:bottom-32 pointer-events-none">
+          {/* Horizontal lines */}
+          <div className="absolute top-0 -left-[100vw] w-[200vw] h-[1px] bg-black/[0.04]" />
+          <div className="absolute bottom-0 -left-[100vw] w-[200vw] h-[1px] bg-black/[0.04]" />
+          
+          {/* Vertical lines */}
+          <div className="absolute left-0 -top-[100vh] h-[200vh] w-[1px] bg-black/[0.04]" />
+          <div className="absolute right-0 -top-[100vh] h-[200vh] w-[1px] bg-black/[0.04]" />
+
+          {/* Crosshairs */}
+          <svg className="absolute -top-1.5 -left-1.5 w-3 h-3 text-black/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg className="absolute -top-1.5 -right-1.5 w-3 h-3 text-black/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg className="absolute -bottom-1.5 -left-1.5 w-3 h-3 text-black/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          <svg className="absolute -bottom-1.5 -right-1.5 w-3 h-3 text-black/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-5xl rounded-[12px] border border-black/5 bg-white p-12 shadow-[0_18px_60px_rgba(0,0,0,0.08)] md:p-14 lg:p-16">
           <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-12">
             {/* Left content */}
             <div className="flex-1 max-w-xl">
@@ -86,19 +112,11 @@ const Hero = () => {
                 platforms where users meet users.
               </p>
 
-              <div className="mt-6 space-y-2">
-                <button className="flex w-full items-center justify-center gap-2 rounded-full bg-[#111111] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-black hover:shadow-md active:translate-y-[1px] md:w-auto md:px-7">
-                  <span className="h-4 w-4 rounded-full bg-gradient-to-tr from-[#4285F4] via-[#FBBC05] to-[#34A853]" />
-                  Sign up with Google
-                </button>
-                <button className="flex w-full items-center justify-center rounded-full bg-[#f5f5f7] px-5 py-2.5 text-sm font-medium text-[#111111] shadow-sm ring-1 ring-black/10 transition-all duration-200 hover:ring-black/20 active:translate-y-[1px] md:w-auto md:px-7">
-                  Sign up with email
-                </button>
+              <div className="mt-6">
+                <p className="rounded-full bg-[#f5f5f7] px-4 py-2 inline-block text-sm font-medium text-[#111111] ring-1 ring-black/10">
+                  No login required, admin demo usage.
+                </p>
               </div>
-
-              <p className="mt-3 text-xs text-[#6e6e73] md:text-sm">
-                No credit card required.
-              </p>
             </div>
 
             {/* Right animated booking preview */}
@@ -235,32 +253,47 @@ const Hero = () => {
                         );
                       })}
                     </div>
-
-                    {/* Animated reviews row */}
-                    <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-black/5 pt-3 text-[11px] text-[#6e6e73]">
-                      <span>Rated 4.9/5 on</span>
-                      <div className="flex items-center gap-2">
-                        {REVIEW_SOURCES.map((source, index) => {
-                          const isActive = index === reviewIndex;
-                          return (
-                            <div
-                              key={source}
-                              className={`flex items-center gap-1 rounded-full px-3 py-1 transition-all duration-300 ${
-                                isActive
-                                  ? "bg-[#111111] text-white shadow-sm"
-                                  : "bg-[#f5f5f7] text-[#3c3c43]"
-                              }`}
-                            >
-                              <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
-                              <span>{source}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
+
+              {/* Static reviews row (outside calendar box) */}
+              <div className="mt-8 flex items-center justify-between px-2">
+                {/* Trustpilot */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-1 justify-center">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <div key={`tp-${i}`} className="flex h-[22px] w-[22px] items-center justify-center bg-[#00b67a] text-[14px] text-white">
+                        ★
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#111111]">
+                    Trustpilot
+                  </div>
+                </div>
+
+                {/* Product Hunt */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-1 text-[#da552f] text-[20px] leading-none">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#da552f]">
+                    <span className="flex h-5 w-5 rounded-full items-center justify-center bg-[#da552f] text-[12px] text-white">P</span>
+                  </div>
+                </div>
+
+                {/* G2 */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-1 text-[#ff492c] text-[20px] leading-none">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span className="opacity-40">★</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#ff492c]">
+                    <span className="flex h-5 w-5 rounded-full items-center justify-center bg-[#ff492c] text-[12px] font-serif italic text-white pr-[1px]">G</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

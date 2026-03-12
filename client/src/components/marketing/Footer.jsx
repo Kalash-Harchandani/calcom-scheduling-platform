@@ -82,9 +82,6 @@ const Footer = () => {
         <div className="grid gap-10 border-b border-black/5 pb-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,2.6fr)] md:gap-12 md:pb-12">
           <div>
             <div className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-xs font-semibold text-white">
-                Cal
-              </div>
               <span className="text-base font-semibold tracking-tight">
                 Cal.com
               </span>
