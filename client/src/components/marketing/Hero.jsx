@@ -38,8 +38,8 @@ const Hero = () => {
 
   return (
     <section className="border-b border-black/5 bg-[#f5f5f7]">
-      <div className="mx-auto max-w-6xl px-4 pb-16 pt-12 md:px-6 md:pb-24 md:pt-20">
-        <div className="rounded-[32px] border border-black/5 bg-white p-5 shadow-[0_18px_60px_rgba(0,0,0,0.08)] md:p-7 lg:p-9">
+      <div className="mx-auto max-w-6xl px-4 pb-28 pt-4 md:px-6 md:pb-32 md:pt-8">
+        <div className="rounded-[12px] border border-black/5 bg-white p-12 shadow-[0_18px_60px_rgba(0,0,0,0.08)] md:p-14 lg:p-16">
           <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-12">
             {/* Left content */}
             <div className="flex-1 max-w-xl">
@@ -103,7 +103,7 @@ const Hero = () => {
 
             {/* Right animated booking preview */}
             <div className="flex-1">
-              <div className="relative rounded-[24px] bg-white p-4 shadow-[0_12px_40px_rgba(0,0,0,0.06)] ring-1 ring-black/5 md:p-5 lg:p-6">
+              <div className="relative rounded-[10px] bg-white p-4 shadow-[0_12px_40px_rgba(0,0,0,0.06)] ring-1 ring-black/5 md:p-5 lg:p-6">
                 {/* Window chrome */}
                 <div className="mb-4 flex items-center justify-between">
                   <div className="flex items-center space-x-1.5">

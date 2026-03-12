@@ -79,8 +79,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#f5f5f7] pt-12 text-[#111111] md:pt-16">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
-        <div className="rounded-3xl bg-white px-4 pb-6 pt-8 shadow-[0_18px_60px_rgba(0,0,0,0.04)] md:px-8 md:pt-10">
-          <div className="grid gap-10 border-b border-black/5 pb-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,2.6fr)] md:gap-12 md:pb-12">
+        <div className="grid gap-10 border-b border-black/5 pb-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,2.6fr)] md:gap-12 md:pb-12">
           <div>
             <div className="flex items-center space-x-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-xs font-semibold text-white">
@@ -134,9 +133,9 @@ const Footer = () => {
               </div>
             ))}
           </div>
-          </div>
+        </div>
 
-          <div className="flex flex-col justify-between gap-3 pt-6 text-[11px] text-[#6e6e73] md:flex-row md:items-center">
+        <div className="flex flex-col justify-between gap-3 py-6 text-[11px] text-[#6e6e73] md:flex-row md:items-center">
           <p>Cal.com® and Cal® are registered trademarks by Cal.com, Inc.</p>
           <p>
             Need help?{" "}
@@ -144,7 +143,6 @@ const Footer = () => {
               support@cal.com
             </span>
           </p>
-          </div>
         </div>
       </div>
     </footer>
