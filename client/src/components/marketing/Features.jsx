@@ -45,10 +45,10 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="border-b border-black/5 bg-white">
+    <section className="border-b border-black/5 bg-[#f5f5f7]">
       <div className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-18 lg:py-20">
         <div className="text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-[#111111] md:text-3xl">
+          <h2 className="font-display text-[22px] font-normal tracking-tight text-[#202124] md:text-[26px]">
             ...and so much more!
           </h2>
           <p className="mt-3 text-sm text-[#3c3c43] md:text-base">
@@ -61,7 +61,7 @@ const Features = () => {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="group relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-lg bg-[#f5f5f7] px-3 text-center shadow-sm ring-1 ring-black/5 transition-all duration-200 hover:-translate-y-1 hover:bg-white hover:shadow-md"
+              className="group relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-lg bg-white px-3 text-center shadow-sm ring-1 ring-black/5 transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
             >
               {/* Icon tile */}
               <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-black/5">
