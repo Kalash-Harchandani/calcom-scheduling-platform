@@ -12,15 +12,15 @@ const Hero = () => {
   useEffect(() => {
     const durationTimer = setInterval(() => {
       setDurationIndex((prev) => (prev + 1) % DURATIONS.length);
-    }, 3740);
+    }, 800);
 
     const dateTimer = setInterval(() => {
       setDateIndex((prev) => (prev + 1) % HIGHLIGHTED_DATES.length);
-    }, 3060);
+    }, 500);
 
     const reviewTimer = setInterval(() => {
       setReviewIndex((prev) => (prev + 1) % REVIEW_SOURCES.length);
-    }, 4420);
+    }, 1200);
 
     return () => {
       clearInterval(durationTimer);
