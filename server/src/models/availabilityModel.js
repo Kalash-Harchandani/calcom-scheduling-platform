@@ -36,6 +36,20 @@ export async function getAvailabilityByDay(day_of_week) {
   return rows;
 }
 
+// Check if a given time range overlaps with existing availability for a day
+export async function checkOverlap(day_of_week, start_time, end_time) {
+  const query = `
+    SELECT * FROM availability
+    WHERE day_of_week = ?
+    AND start_time < ?
+    AND end_time > ?
+  `;
+
+  const [rows] = await pool.query(query, [day_of_week, end_time, start_time]);
+
+  return rows.length > 0;
+}
+
 // Update an availability slot by id
 export async function updateAvailability(
   id,
@@ -67,4 +81,5 @@ export async function deleteAvailability(id) {
   const [result] = await pool.query(query, [id]);
   return result.affectedRows > 0;
 }
+
 

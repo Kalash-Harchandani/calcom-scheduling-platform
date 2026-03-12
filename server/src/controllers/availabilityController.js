@@ -3,6 +3,7 @@ import {
   getAllAvailability,
   updateAvailability,
   deleteAvailability,
+  checkOverlap,
 } from "../models/availabilityModel.js";
 
 // POST /availability
@@ -13,6 +14,15 @@ export async function createAvailabilityHandler(req, res) {
     const error = new Error("day_of_week, start_time and end_time are required");
     error.status = 400;
     throw error;
+  }
+
+  const overlap = await checkOverlap(day_of_week, start_time, end_time);
+
+  if (overlap) {
+    return res.status(400).json({
+      success: false,
+      message: "Availability range overlaps with existing schedule",
+    });
   }
 
   const id = await createAvailability({ day_of_week, start_time, end_time });
