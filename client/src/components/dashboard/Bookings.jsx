@@ -65,21 +65,19 @@ const Bookings = () => {
         <div className="flex gap-4 border-b border-white/10 w-full pb-3 text-sm font-medium">
           <button
             onClick={() => handleTabChange("upcoming")}
-            className={`${
-              activeTab === "upcoming"
+            className={`${activeTab === "upcoming"
                 ? "text-white"
                 : "text-[#a1a1aa] hover:text-white"
-            } transition-colors`}
+              } transition-colors`}
           >
             Upcoming
           </button>
           <button
             onClick={() => handleTabChange("past")}
-            className={`${
-              activeTab === "past"
+            className={`${activeTab === "past"
                 ? "text-white"
                 : "text-[#a1a1aa] hover:text-white"
-            } transition-colors`}
+              } transition-colors`}
           >
             Past
           </button>
@@ -100,12 +98,12 @@ const Bookings = () => {
               // Parse date and time to format them beautifully
               const dateObj = booking.booking_date ? dayjs(booking.booking_date) : (booking.date ? dayjs(booking.date) : dayjs());
               const formattedDate = dateObj.format("ddd, D MMM");
-              
+
               const guestName = booking.name || booking.guestName || "Guest";
-              const title = booking.eventTitle;
+              const title = booking.eventTitle || booking.eventName || "Booking";
               const duration = parseInt(booking.duration || 30, 10);
               const startTime = booking.start_time || booking.time || "10:00am";
-              
+
               // Calculate end time roughly if possible
               let endTimeOutput = "";
               try {
@@ -148,9 +146,9 @@ const Bookings = () => {
                     </button>
                     {openDropdownId === (booking.id || booking._id) && (
                       <>
-                        <div 
-                          className="fixed inset-0 z-10" 
-                          onClick={() => setOpenDropdownId(null)} 
+                        <div
+                          className="fixed inset-0 z-10"
+                          onClick={() => setOpenDropdownId(null)}
                         />
                         <div className="absolute right-0 top-full mt-1 z-20 w-32 overflow-hidden rounded-lg border border-white/10 bg-[#111111] shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
                           {activeTab === "upcoming" && (
@@ -169,23 +167,23 @@ const Bookings = () => {
               );
             })}
           </div>
-          
+
           <div className="flex items-center justify-between mt-6 px-2 text-xs text-[#a1a1aa]">
-             <div className="flex items-center gap-2">
-               <select className="bg-transparent border border-white/10 rounded-md px-2 py-1 outline-none focus:border-white/20">
-                 <option value="10">10</option>
-                 <option value="20">20</option>
-                 <option value="50">50</option>
-               </select>
-               <span>rows per page</span>
-             </div>
-             <div className="flex items-center gap-4">
-               <span>1-{items.length} of {items.length}</span>
-               <div className="flex gap-1">
-                 <button disabled className="p-1 rounded opacity-50 cursor-not-allowed hidden md:block">‹</button>
-                 <button disabled className="p-1 rounded opacity-50 cursor-not-allowed hidden md:block">›</button>
-               </div>
-             </div>
+            <div className="flex items-center gap-2">
+              <select className="bg-transparent border border-white/10 rounded-md px-2 py-1 outline-none focus:border-white/20">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+              <span>rows per page</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span>1-{items.length} of {items.length}</span>
+              <div className="flex gap-1">
+                <button disabled className="p-1 rounded opacity-50 cursor-not-allowed hidden md:block">‹</button>
+                <button disabled className="p-1 rounded opacity-50 cursor-not-allowed hidden md:block">›</button>
+              </div>
+            </div>
           </div>
         </div>
       )}
