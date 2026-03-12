@@ -1,10 +1,9 @@
+
 # 🗓️ Cal.com Clone: Scheduling & Booking Platform
 
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![MySQL](https://img.shields.io/badge/MySQL-00000f?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+<p>
+  <img src="https://skillicons.dev/icons?i=react,nodejs,express,mysql,tailwind,docker,vercel,aws,cursor,chatgpt"/>
+</p>
 
 A high-performance, full-stack scheduling platform inspired by Cal.com. This application replicates the core booking experience, allowing users to manage meeting types, set granular availability, and share public booking links.
 
@@ -31,25 +30,30 @@ A high-performance, full-stack scheduling platform inspired by Cal.com. This app
 
 ## 🏗️ Technical Architecture
 
+
 ### System Flow
+
 ```mermaid
 graph TD
-    User((User)) -->|Interacts| Client[React Frontend]
+    User((User)) -->|Interacts| Client[React Frontend - Vercel]
     Client -->|API Requests| API[Node.js / Express Backend]
-    API -->|Queries| DB[(MySQL Database)]
-    API -->|Sends Emails| SMTP[Nodemailer / SMTP Service]
-    
-    subgraph "AWS Cloud (EC2)"
-        Client
+
+    subgraph AWS_Cloud_EC2
         API
+        DB[(MySQL Database - Docker)]
     end
+
+    API -->|Queries| DB
+    API -->|Sends Emails| SMTP[Nodemailer - SMTP Service]
 ```
+
 
 ### Tech Stack
 - **Frontend**: React.js, Tailwind CSS, Lucide Icons, Axios.
 - **Backend**: Node.js, Express.js.
 - **Database**: MySQL with a relational schema optimized for scheduling.
 - **Tools**: Day.js for time manipulation, Docker for containerized deployment.
+- **Deploy**: Vercel for client-side and AWS EC2 for server-side.
 
 ### 📊 Database Schema
 The database is structured to handle complex scheduling relationships:
@@ -94,26 +98,3 @@ Run the entire stack with one command:
 docker-compose up --build
 ```
 
----
-
-## 🛠️ Code Modularity
-The project follows a strict **Separation of Concerns**:
-- **Frontend**: Modular component architecture (`/components/booking`, `/components/dashboard/`).
-- **Backend**: Layered architecture with separate routes, controllers, and database models.
-- **Middleware**: Centralized error handling and validation logic.
-
----
-
-## 🌐 Deployment
-The application is fully deployed and accessible:
-- **Architecture**: Hosted on **AWS EC2** for robust performance and scalability.
-- **Frontend & Backend**: Integrated deployment on a dedicated cloud instance.
-- **Live Link**: [Cal.com Clone (Live)](http://your-ec2-public-ip-or-domain.com)
-
----
-
-## 🛠️ Code Modularity
-The project follows a strict **Separation of Concerns**:
-- **Frontend**: Modular component architecture (`/components/booking`, `/components/dashboard/`).
-- **Backend**: Layered architecture with separate routes, controllers, and models.
-- **Middleware**: Centralized error handling and validation logic.
