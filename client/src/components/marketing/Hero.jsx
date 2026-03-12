@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 const DURATIONS = ["15m", "30m", "45m", "1h"];
-const REVIEW_SOURCES = ["Trustpilot", "Google Reviews"];
 const HIGHLIGHTED_DATES = [15, 16, 20, 21, 22, 23, 27, 28, 29, 30];
 
 const Hero = () => {
   const [durationIndex, setDurationIndex] = useState(0);
   const [dateIndex, setDateIndex] = useState(0);
-  const [reviewIndex, setReviewIndex] = useState(0);
 
   useEffect(() => {
     const durationTimer = setInterval(() => {
@@ -18,20 +16,14 @@ const Hero = () => {
       setDateIndex((prev) => (prev + 1) % HIGHLIGHTED_DATES.length);
     }, 500);
 
-    const reviewTimer = setInterval(() => {
-      setReviewIndex((prev) => (prev + 1) % REVIEW_SOURCES.length);
-    }, 1200);
-
     return () => {
       clearInterval(durationTimer);
       clearInterval(dateTimer);
-      clearInterval(reviewTimer);
     };
   }, []);
 
   const selectedDuration = DURATIONS[durationIndex];
   const selectedDate = HIGHLIGHTED_DATES[dateIndex];
-  const activeReview = REVIEW_SOURCES[reviewIndex];
 
   const daysInMonth = 31;
   const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);

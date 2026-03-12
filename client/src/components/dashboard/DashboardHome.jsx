@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Calendar as CalendarIcon, Link as LinkIcon, Plus, Clock, Users, ArrowRight } from "lucide-react";
+import { Calendar as CalendarIcon, Link as LinkIcon, Clock, Users, ArrowRight } from "lucide-react";
 import dayjs from "dayjs";
 
 const DashboardHome = () => {
