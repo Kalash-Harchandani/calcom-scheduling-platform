@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../marketing/Navbar";
 import Hero from "../marketing/Hero";
 import TrustedBy from "../marketing/TrustedBy";
@@ -7,6 +7,10 @@ import Testimonials from "../marketing/Testimonials";
 import Footer from "../marketing/Footer";
 
 const MarketingLayout = () => {
+  useEffect(() => {
+    document.title = "Cal.com | Open Scheduling Infrastructure";
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#f5f5f7] text-[#111111]">
       <Navbar />

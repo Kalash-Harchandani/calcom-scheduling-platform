@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLocation, Link } from "react-router-dom";
 import { LayoutDashboard, Link as LinkIcon, Clock, Calendar, ArrowLeft } from "lucide-react";
 
@@ -11,6 +11,12 @@ const navItems = [
 
 const DashboardLayout = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    const activeItem = navItems.find((n) => location.pathname.startsWith(n.to));
+    const title = activeItem ? activeItem.label : "Dashboard";
+    document.title = `${title} | Cal.com`;
+  }, [location.pathname]);
 
   return (
     <div className="flex min-h-screen bg-black text-white">

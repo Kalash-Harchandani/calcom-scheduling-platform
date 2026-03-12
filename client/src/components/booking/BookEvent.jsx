@@ -100,6 +100,14 @@ const BookEvent = () => {
     }
   };
 
+  useEffect(() => {
+    if (successMessage && bookedDetails) {
+      document.title = "Booking | Cal.com";
+    } else if (event) {
+      document.title = `${event.title} | Admin | Cal.com`;
+    }
+  }, [successMessage, bookedDetails, event]);
+
   const formattedDate = date.format("MMMM D, YYYY");
 
   const monthLabel = date.format("MMMM YYYY");
