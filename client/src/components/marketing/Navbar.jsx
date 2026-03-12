@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const navLinks = [
   "Solutions",
@@ -11,6 +12,7 @@ const navLinks = [
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,7 +72,10 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-          <button className="rounded-full bg-[#111111] px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-black">
+          <button
+            className="rounded-full bg-[#111111] px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-black"
+            onClick={() => navigate("/app/dashboard")}
+          >
             Go to app
           </button>
         </div>
