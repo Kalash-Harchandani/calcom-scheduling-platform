@@ -125,7 +125,7 @@ const BookEvent = () => {
                 {event.title.charAt(0).toUpperCase()}
               </div>
               <div>
-                <p className="text-sm text-[#a1a1aa]">kalash</p>
+                <p className="text-sm text-[#a1a1aa]">Admin</p>
                 <p className="text-xs text-[#6e6e73]">{formattedDate}</p>
               </div>
             </div>

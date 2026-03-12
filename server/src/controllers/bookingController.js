@@ -4,6 +4,7 @@ import {
   getPastBookings,
   cancelBooking,
 } from "../models/bookingModel.js";
+import { sendBookingEmail } from "../utils/sendEmail.js";
 
 // POST /bookings
 export async function createBookingHandler(req, res) {
@@ -38,6 +39,14 @@ export async function createBookingHandler(req, res) {
     booking_date,
     start_time,
     end_time,
+  });
+
+  // Send confirmation email
+  await sendBookingEmail(email, {
+    name,
+    date: booking_date,
+    startTime: start_time,
+    endTime: end_time,
   });
 
   return res.status(201).json({
