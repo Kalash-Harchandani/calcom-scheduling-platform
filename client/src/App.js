@@ -6,7 +6,7 @@ import DashboardHome from "./components/dashboard/DashboardHome";
 import EventTypes from "./components/dashboard/EventTypes";
 import Availability from "./components/dashboard/Availability";
 import Bookings from "./components/dashboard/Bookings";
-import BookEvent from "./components/public/BookEvent";
+import BookEvent from "./components/booking/BookEvent";
 
 const App = () => {
   return (
