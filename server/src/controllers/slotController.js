@@ -44,23 +44,22 @@ export async function getAvailableSlotsHandler(req, res) {
 
   let slots = generateSlots(availabilityRanges, event.duration, bookings);
 
-  // Filter out past time slots if the requested date is today
-  const today = new Date();
-  const isToday =
-    dateObj.getUTCFullYear() === today.getFullYear() &&
-    dateObj.getUTCMonth() === today.getMonth() &&
-    dateObj.getUTCDate() === today.getDate();
+  // Filter out any time slots that are in the past or within the 15-minute buffer
+  const now = new Date();
+  const bufferMs = 15 * 60 * 1000;
+  const minAllowedTime = new Date(now.getTime() + bufferMs);
 
-  if (isToday) {
-    const currentMinutes = today.getHours() * 60 + today.getMinutes();
-    const bufferMinutes = 15; // Don't allow bookings less than 15 mins from now
+  slots = slots.filter((slot) => {
+    // Construct local datetime for the slot based on requested date and slot time
+    // format: "YYYY-MM-DDTHH:mm:ss" parses into server's local time
+    const slotDateTime = new Date(`${date}T${slot.start_time}`);
     
-    slots = slots.filter(slot => {
-      const [h, m] = slot.start_time.split(":").map(Number);
-      const slotMinutes = h * 60 + m;
-      return slotMinutes >= (currentMinutes + bufferMinutes);
-    });
-  }
+    // Check if the slot date is valid and is >= our minimum allowed time
+    if (!Number.isNaN(slotDateTime.getTime())) {
+      return slotDateTime >= minAllowedTime;
+    }
+    return true; // fallback if parsing failed for some reason
+  });
 
   return res.status(200).json({
     success: true,
