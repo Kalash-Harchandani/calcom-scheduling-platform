@@ -42,7 +42,25 @@ export async function getAvailableSlotsHandler(req, res) {
   const availabilityRanges = await getAvailabilityByDay(day_of_week);
   const bookings = await getBookingsForDate(date);
 
-  const slots = generateSlots(availabilityRanges, event.duration, bookings);
+  let slots = generateSlots(availabilityRanges, event.duration, bookings);
+
+  // Filter out past time slots if the requested date is today
+  const today = new Date();
+  const isToday =
+    dateObj.getUTCFullYear() === today.getFullYear() &&
+    dateObj.getUTCMonth() === today.getMonth() &&
+    dateObj.getUTCDate() === today.getDate();
+
+  if (isToday) {
+    const currentMinutes = today.getHours() * 60 + today.getMinutes();
+    const bufferMinutes = 15; // Don't allow bookings less than 15 mins from now
+    
+    slots = slots.filter(slot => {
+      const [h, m] = slot.start_time.split(":").map(Number);
+      const slotMinutes = h * 60 + m;
+      return slotMinutes >= (currentMinutes + bufferMinutes);
+    });
+  }
 
   return res.status(200).json({
     success: true,

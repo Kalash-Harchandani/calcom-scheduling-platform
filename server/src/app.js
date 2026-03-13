@@ -9,7 +9,8 @@ import { errorHandler } from "./middlewares/errorMiddleware.js";
 const app = express();
 
 app.use(cors({
-  origin: "https://calcom-scheduling-platform.vercel.app"
+  origin: ["https://calcom-scheduling-platform.vercel.app", "http://localhost:3000"],
+  credentials: true
 }));
 app.use(express.json());
 
