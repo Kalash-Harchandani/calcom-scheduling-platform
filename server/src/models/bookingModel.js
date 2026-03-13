@@ -50,7 +50,7 @@ export async function getUpcomingBookings() {
       et.title AS eventTitle
     FROM bookings b
     LEFT JOIN event_types et ON b.event_type_id = et.id
-    WHERE (b.booking_date > CURDATE() OR (b.booking_date = CURDATE() AND b.end_time >= CURTIME()))
+    WHERE (b.booking_date > CURDATE() OR (b.booking_date = CURDATE() AND b.start_time >= CURTIME()))
       AND b.status = 'scheduled'
     ORDER BY b.booking_date ASC, b.start_time ASC
   `;
@@ -78,7 +78,7 @@ export async function getPastBookings() {
     WHERE b.status = 'scheduled'
       AND (
         b.booking_date < CURDATE()
-        OR (b.booking_date = CURDATE() AND b.end_time < CURTIME())
+        OR (b.booking_date = CURDATE() AND b.start_time < CURTIME())
       )
     ORDER BY b.booking_date DESC, b.start_time DESC
   `;
