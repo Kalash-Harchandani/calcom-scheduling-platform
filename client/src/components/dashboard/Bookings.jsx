@@ -137,32 +137,32 @@ const Bookings = () => {
                   </div>
 
                   {/* Right: Actions */}
-                  <div className="relative ml-4 flex-shrink-0">
-                    <button
-                      onClick={() => setOpenDropdownId(openDropdownId === (booking.id || booking._id) ? null : (booking.id || booking._id))}
-                      className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 text-[#a1a1aa] hover:bg-white/10 hover:text-white transition-colors"
-                    >
-                      <MoreHorizontal className="w-4 h-4" />
-                    </button>
-                    {openDropdownId === (booking.id || booking._id) && (
-                      <>
-                        <div
-                          className="fixed inset-0 z-10"
-                          onClick={() => setOpenDropdownId(null)}
-                        />
-                        <div className="absolute right-0 top-full mt-1 z-20 w-32 overflow-hidden rounded-lg border border-white/10 bg-[#111111] shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
-                          {activeTab === "upcoming" && (
+                  {activeTab === "upcoming" && (
+                    <div className="relative ml-4 flex-shrink-0">
+                      <button
+                        onClick={() => setOpenDropdownId(openDropdownId === (booking.id || booking._id) ? null : (booking.id || booking._id))}
+                        className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 text-[#a1a1aa] hover:bg-white/10 hover:text-white transition-colors"
+                      >
+                        <MoreHorizontal className="w-4 h-4" />
+                      </button>
+                      {openDropdownId === (booking.id || booking._id) && (
+                        <>
+                          <div
+                            className="fixed inset-0 z-10"
+                            onClick={() => setOpenDropdownId(null)}
+                          />
+                          <div className="absolute right-0 top-full mt-1 z-20 w-32 overflow-hidden rounded-lg border border-white/10 bg-[#111111] shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
                             <button
                               onClick={() => handleCancel(booking)}
                               className="block w-full px-4 py-2 text-left text-xs font-medium text-red-400 hover:bg-red-500/10"
                             >
                               Cancel
                             </button>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </div>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </article>
               );
             })}
