@@ -37,7 +37,9 @@ A high-performance, full-stack scheduling platform inspired by Cal.com. This app
 - **Confirmation Page**: Instant feedback with meeting details upon successful booking.
 
 ### 🚀 Bonus Features Implemented
-- **Email Notifications**: Automated confirmation/cancellation emails via SMTP (Nodemailer).
+
+- **Email Notifications**: Automated booking confirmation and cancellation emails using SMTP with Nodemailer.
+- **Buffer Time Between Meetings**: A 15-minute buffer is automatically enforced between meetings to prevent back-to-back bookings. The buffer logic is handled on the backend.
 
 ----
 
@@ -57,6 +59,7 @@ The database is structured to handle complex scheduling relationships:
 ---
 ### 🚀 Technical Highlights
 
+- **Advanced Slot Generation Logic**: Implemented a pure math-based slot engine with overlap detection, 15-minute booking buffer, and past-time filtering to ensure conflict-free, human-friendly scheduling.
 - **Global Error Handling**: A centralized error-handling middleware (`server/src/middlewares/errorMiddleware.js`) captures all exceptions across the API, ensuring consistent JSON error responses and simplified debugging.
 - **Structural Modularity**: The codebase follows a clean, modular architecture separating concerns into:
   - **Routes**: Clean API endpoint definitions.
