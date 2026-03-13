@@ -22,19 +22,30 @@ A high-performance, full-stack scheduling platform inspired by Cal.com. This app
 
 ---
 
-## ✨ Key Features
+### ✨ Key Features
 
-### 🛠️ Admin Dashboard (Seed User)
-- **Event Types Management**: Create, edit, and delete event types (e.g., 30-min discovery, 1-hour consultation).
-- **Unique Slugs**: Each event type generates a dedicated public URL for booking.
-- **Availability Control**: Set active days, time ranges, and timezones (supported for Asia/Kolkata).
-- **Bookings Dashboard**: Real-time view of upcoming and past appointments with cancellation capability.
+#### 1. Event Types Management
+- Create event types with title, description, duration (in minutes), and a unique URL slug.
+- Edit and delete existing event types.
+- View all event types on the admin dashboard.
+- Each event type automatically generates a unique public booking link.
 
-### 📅 Public Booking Flow
-- **Interactive Calendar**: Elegant date selection with dynamic slot generation.
-- **Availability Logic**: Time slots are automatically filtered based on admin settings and existing bookings.
-- **Double-Booking Prevention**: Robust logic to ensure no two meetings overlap on the same event type.
-- **Confirmation Page**: Instant feedback with meeting details upon successful booking.
+#### 2. Availability Settings
+- Configure available days of the week (e.g., Monday–Friday).
+- Define daily availability time ranges (e.g., 9:00 AM – 5:00 PM).
+- Set the timezone for the scheduling system (supports Asia/Kolkata).
+
+#### 3. Public Booking Page
+- Interactive calendar interface to select a booking date.
+- Display available time slots dynamically based on admin availability settings and existing bookings.
+- Booking form to collect the booker’s name and email.
+- Prevent double booking of the same time slot using backend validation.
+- Confirmation page displaying booking details after successful scheduling.
+
+#### 4. Bookings Dashboard
+- View upcoming bookings.
+- View past bookings.
+- Cancel an existing booking from the dashboard.
 
 ### 🚀 Bonus Features Implemented
 
