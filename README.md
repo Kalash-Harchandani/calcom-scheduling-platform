@@ -1,9 +1,7 @@
 ## ⚠️ Known Network Limitation
 
 The application may not load correctly on some restricted networks 
-(e.g., certain college or office Wi-Fi) due to firewall rules that block 
-non-standard backend ports.
-
+(e.g., certain college or office Wi-Fi)
 If the app does not load:
 - Try accessing it using mobile data or another network.
 
