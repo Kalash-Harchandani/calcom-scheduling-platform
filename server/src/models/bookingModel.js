@@ -75,13 +75,11 @@ export async function getPastBookings() {
       et.title AS eventTitle
     FROM bookings b
     LEFT JOIN event_types et ON b.event_type_id = et.id
-    WHERE (
-      b.booking_date < CONVERT_TZ(CURDATE(), '+00:00', '+05:30')
-      OR (
-        b.booking_date = CONVERT_TZ(CURDATE(), '+00:00', '+05:30')
-        AND b.end_time < CONVERT_TZ(CURTIME(), '+00:00', '+05:30')
+    WHERE b.status = 'scheduled'
+      AND (
+        b.booking_date < CURDATE()
+        OR (b.booking_date = CURDATE() AND b.end_time < CURTIME())
       )
-    )
     ORDER BY b.booking_date DESC, b.start_time DESC
   `;
 
