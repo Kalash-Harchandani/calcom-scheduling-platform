@@ -55,7 +55,15 @@ The database is structured to handle complex scheduling relationships:
 - `bookings`: Tracks all scheduled events with relationship to event types.
 
 ---
+### 🚀 Technical Highlights
 
+- **Global Error Handling**: A centralized error-handling middleware (`server/src/middlewares/errorMiddleware.js`) captures all exceptions across the API, ensuring consistent JSON error responses and simplified debugging.
+- **Structural Modularity**: The codebase follows a clean, modular architecture separating concerns into:
+  - **Routes**: Clean API endpoint definitions.
+  - **Controllers**: Practical request/response orchestration.
+  - **Services**: Pure logic (like slot generation) decoupled from HTTP details.
+  - **Models**: Efficient database interactions using SQL.
+---
 ## 🚦 Getting Started
 
 ### Prerequisites
